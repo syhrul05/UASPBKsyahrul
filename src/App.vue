@@ -1,110 +1,138 @@
 <template>
-  <q-layout view="hHh lpR fFf" style="background-image: url('https://eng.uir.ac.id/wp-content/uploads/2022/10/Gambar3.png'); background-size: cover; background-position: center;">
+  <q-layout view="hHh lpR fFf" class="app-background">
     <q-header elevated class="bg-primary text-white">
       <q-toolbar>
-        <q-toolbar-title> Ujian Akhir Semester (Praktikum) </q-toolbar-title>
-        <nav>
-          <div class="dropdown">
-            <button class="dropbtn">Assignments</button>
-            <div class="dropdown-content">
-              <q-item clickable v-ripple @click="handleLinkClick('https://syahrul-project-cv.netlify.app/')">
-                <q-item-section>TUGAS 1</q-item-section>
-              </q-item>
-              <q-item clickable v-ripple @click="handleLinkClick('https://syahrulllle.netlify.app/')">
-                <q-item-section>TUGAS 2</q-item-section>
-              </q-item>
-              <q-item clickable v-ripple @click="handleLinkClick('https://syhrulprakpbk.netlify.app/')">
-                <q-item-section>TUGAS 3</q-item-section>
-              </q-item>
-              <q-item clickable v-ripple @click="handleLinkClick('https://syahrultugas4pbk.netlify.app/')">
-                <q-item-section>TUGAS 4</q-item-section>
-              </q-item>
-              <q-item clickable v-ripple @click="handleLinkClick('https://syahrulpbk5tugas.netlify.app/')">
-                <q-item-section>TUGAS 5</q-item-section>
-              </q-item>
-              <q-item clickable v-ripple @click="handleLinkClick('https://syahrulprak6pbk.netlify.app/')">
-                <q-item-section>TUGAS 6</q-item-section>
-              </q-item>
-              <q-item clickable v-ripple @click="handleLinkClick('https://syahrultugas7pbk.netlify.app/')">
-                <q-item-section>TUGAS 7</q-item-section>
-              </q-item>
-            </div>
-          </div>
-        </nav>
+        <q-toolbar-title>Ujian Akhir Semester (PBK)</q-toolbar-title>
+        <q-btn-dropdown
+          label="Tugas"
+          color="primary"
+          text-color="white"
+          no-caps
+        >
+          <q-list>
+            <q-item clickable v-ripple to="/assignment/1">
+              <q-item-section>Tugas 1</q-item-section>
+            </q-item>
+            <q-item clickable v-ripple to="/assignment/2">
+              <q-item-section>Tugas 2</q-item-section>
+            </q-item>
+            <q-item clickable v-ripple to="/assignment/3">
+              <q-item-section>Tugas 3</q-item-section>
+            </q-item>
+            <q-item clickable v-ripple to="/assignment/4">
+              <q-item-section>Tugas 4</q-item-section>
+            </q-item>
+            <q-item clickable v-ripple to="/assignment/5">
+              <q-item-section>Tugas 5</q-item-section>
+            </q-item>
+            <q-item clickable v-ripple to="/assignment/6">
+              <q-item-section>Tugas 6</q-item-section>
+            </q-item>
+            <q-item clickable v-ripple to="/assignment/7">
+              <q-item-section>Tugas 7</q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
       </q-toolbar>
     </q-header>
 
     <q-page-container>
-      <konten />
+      <div id="app">
+        <router-view />
+      </div>
     </q-page-container>
 
-    <q-footer class="footer-class" elevated>
-      <q-toolbar class="glossy">
-        <q-toolbar-title>
-          <q-item clickable v-ripple @click="openMultipleLinks(['https://www.instagram.com/syhrull.e?igsh=MXN0d2JsYjA3cm5xbg=='])">
-            <q-item-section>SYAHRUL RAMADHAN</q-item-section>
-            <q-avatar>
-            <img src="https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Photos.png" alt="Avatar" />
+    <q-footer class="bg-primary text-white">
+      <q-toolbar class="footer-content">
+        <!-- Instagram Avatar and Button -->
+        <q-btn
+          flat
+          dense
+          color="white"
+          class="footer-instagram-btn"
+          @click="openInstagram"
+          aria-label="Instagram Profile"
+        >
+          <q-avatar class="footer-avatar">
+            <img src="https://logodownload.org/wp-content/uploads/2017/04/instagram-logo-6.png" alt="Instagram Logo" />
           </q-avatar>
-          </q-item>
-        </q-toolbar-title>
+          <span class="footer-name">SYAHRUL RAMADHAN</span>
+        </q-btn>
       </q-toolbar>
     </q-footer>
   </q-layout>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-import konten from './components/Container.vue';
-
-function handleLinkClick(url) {
-  window.open(url, '_blank');
-}
-
-function openMultipleLinks(links) {
-  links.forEach(link => {
-    window.open(link, '_blank');
-  });
-}
+<script>
+export default {
+  name: "App",
+  methods: {
+    openInstagram() {
+      window.open('https://www.instagram.com/syhrull.e?igsh=MXN0d2JsYjA3cm5xbg==', '_blank');
+    }
+  }
+};
 </script>
 
 <style scoped>
-/* Tambahkan styling untuk dropdown */
-.dropdown {
-  position: relative;
-  display: inline-block;
+/* Background Image Style */
+.app-background {
+  background-image: url('https://eng.uir.ac.id/wp-content/uploads/2022/10/Gambar3.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  min-height: 100vh; /* Ensure it covers the viewport */
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #232ae0;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+.bg-primary {
+  background-color: var(--q-primary); /* Using Quasar theme color */
 }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
-
-.dropbtn {
-  background-color: blue;
+.text-white {
   color: white;
-  padding: 12px;
+}
+
+.q-btn--primary {
+  background-color: var(--q-primary);
+  color: white;
+}
+
+.q-btn-dropdown__label {
   font-size: 16px;
-  border: none;
+}
+
+.q-list .q-item {
+  font-size: 16px;
+  color: black;
+}
+
+.q-toolbar-title {
+  color: white;
+  text-decoration: underline;
   cursor: pointer;
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+/* Footer Styles */
+.footer-content {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between avatar and text */
+}
+
+.footer-instagram-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between avatar and text */
+  text-decoration: none;
+}
+
+.footer-avatar {
+  width: 24px;
+  height: 24px;
+}
+
+.footer-name {
+  text-decoration: underline;
+  cursor: pointer;
 }
 </style>
