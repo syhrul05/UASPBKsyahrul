@@ -21,4 +21,4 @@ myApp.use(Quasar, {
 });
 
 // Assumes you have a <div id="app"></div> in your index.html
-myApp.mount('#app')
+myApp.use(router).mount('#app')
