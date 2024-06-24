@@ -35,7 +35,7 @@
     </q-header>
 
     <q-page-container>
-      <konten />
+      <router-view></router-view>
     </q-page-container>
 
     <q-footer class="footer-class" elevated>
